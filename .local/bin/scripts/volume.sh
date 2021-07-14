@@ -29,7 +29,7 @@ function send_notification {
     bar=$(seq --separator="─" 0 "$((volume / 5))" | sed 's/[0-9]//g')
     percent=$volume%
     # Send the notification
-    dunstify -i "$iconVolup" -r 2593 "$percent" -u normal "$bar"
+    dunstify -h string:x-canonical-private-synchronous:audio "Volume: "  -h int:value:"`amixer get Master | grep '%' | head -n 1 | cut -d '[' -f 2 | cut -d '%' -f 1`"
   fi
 }
 
