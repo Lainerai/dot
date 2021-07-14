@@ -17,6 +17,14 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin/
 export PATH=$PATH:$ANDROID_ROOT/emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools/
 export CHROME_EXECUTABLE="/usr/bin/google-chrome-unstable"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+# Preserve MANPATH if you already defined it somewhere in your config.
+# Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
+NPM_PACKAGES="${HOME}/.npm-packages"
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+export PATH=~/.npm-packages/bin:$PATH
+
+
 
 ###########
 # GENERAL #
