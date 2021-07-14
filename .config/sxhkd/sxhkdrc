@@ -170,11 +170,11 @@ super + =
 
 #Volume Control
 XF86AudioLowerVolume
-	amixer set Master 5%-
+	amixer set Master 5%-; dunstify --icon=$HOME/.config/dunst/images/volume.png -h string:x-canonical-private-synchronous:audio "Volume: "  -h int:value:"`amixer get Master | grep '%' | head -n 1 | cut -d '[' -f 2 | cut -d '%' -f 1`"
 XF86AudioRaiseVolume
-	amixer set Master 5%+
+	amixer set Master 5%+; dunstify --icon=$HOME/.config/dunst/images/volume.png -h string:x-canonical-private-synchronous:audio "Volume: "  -h int:value:"`amixer get Master | grep '%' | head -n 1 | cut -d '[' -f 2 | cut -d '%' -f 1`"
 XF86AudioMute
-    amixer set Master toggle
+    amixer -D pulse set Master 1+ toggle; dunstify "Muted"
 # Manage brightness
 XF86MonBrightness{Up,Down}
-    sh $HOME/.local/bin/brightness.sh {up,down}
+    brightnessctl set 5%{+,-}; dunstify "Brightness: " --icon=$HOME/.config/dunst/images/brightness.png -h int:value:"`light | cut -d '.' -f 1`"
