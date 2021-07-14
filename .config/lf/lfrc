@@ -1,0 +1,149 @@
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/cleaner
+
+set preview true
+set hidden true
+set drawbox true
+set icons true
+set ignorecase true
+
+map . set hidden!
+
+set shellopts '-eu'
+set ifs "\n"
+
+
+# Custom Functions
+cmd open ${{
+    test -L $f && f=$(readlink -f $f)
+    case $(file --mime-type $f -b) in
+        text/*) $EDITOR $fx;;
+        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
+    esac
+}}
+
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd chmod ${{
+  printf "Mode Bits: "
+  read ans
+
+  for file in "$fx"
+  do
+    chmod $ans $file
+  done
+
+  lf -remote 'send reload'
+}}
+
+cmd sudomkfile ${{
+  printf "File Name: "
+  read ans
+  sudo $EDITOR $ans
+}}
+
+cmd fzf_jump ${{
+  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+cmd extract ${{
+    set -f
+    case $f in
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+        *.tar.gz|*.tgz) tar xzvf $f;;
+        *.tar.xz|*.txz) tar xJvf $f;;
+        *.zip) unzip $f;;
+        *.rar) unrar x $f;;
+        *.7z) 7z x $f;;
+    esac
+}}
+
+cmd zip %zip -r "$f" "$f"
+cmd tar %tar cvf "$f.tar" "$f"
+cmd targz %tar cvzf "$f.tar.gz" "$f"
+cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
+
+ cmd delete ${{
+     set -f
+     printf "$fx\n"
+     printf "delete?[y/n]"
+     read ans
+     [ $ans = "y" ] && rm -rf $fx
+}}
+
+cmd trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    # extract the substring from start of string up to delimiter.
+    # this is the first "element" of the string.
+    file=${files%%;*}
+
+    trash-put "$(basename "$file")"
+    # if there's only one element left, set `files` to an empty string.
+    # this causes us to exit this `while` loop.
+    # else, we delete the first "element" of the string from files, and move onto the next.
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
+}}
+
+cmd clear_trash %trash-empty
+
+cmd restore_trash ${{
+  trash-restore
+}}
+
+map d
+map m
+map c
+
+map o &mimeopen $f
+map O $mimeopen --ask $f
+
+map <delete> delete
+map x cut
+map dd trash
+map tc clear_trash
+map tr restore_trash
+
+map mf mkfile
+map md mkdir
+map mr sudomkfile
+map ch chmod
+
+map az zip
+map at tar
+map ag targz
+map ab targz
+map au extract
+
+map gc cd ~/.config/
+map gB cd ~/.config/bspwm
+map gP cd ~/.config/polybar/
+map gS cd ~/.config/sxhkd
+map gb cd ~/.local/bin/
+map gp cd ~/Pictures
+map gW cd ~/Pictures/Wallpaper
+map gd cd ~/Downloads
+map gD cd ~/Documents
+
+map C clear

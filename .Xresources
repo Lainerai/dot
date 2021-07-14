@@ -1,0 +1,57 @@
+! Allow sixel graphics. (Try: "convert -colors 16 foo.jpg sixel:-").
+xterm*VT100.Translations: #override \n\
+                 Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\
+                 Ctrl Shift <Key>C:    copy-selection(CLIPBOARD) \n\
+        		 Ctrl <Key> minus: smaller-vt-font() \n\
+	        	 Ctrl <Key> plus: larger-vt-font() 
+xterm*decTerminalID	:	vt340
+XTerm.vt100.locale: false
+XTerm.vt100.utf8: true
+XTerm.vt100.metaSendsEscape: true
+XTerm.vt100.backarrowKey: false
+XTerm.vt100.saveLines: 4096
+XTerm.ttyModes: erase ^?
+XTerm*selectToClipboard: true
+xterm*faceName: CaskaydiaCove Nerd Font
+xterm*faceSize: 11
+xterm*renderFont: true
+xterm.locale: true
+xterm*colorBD: wheat
+xterm*colorBDMode: true
+
+! special
+*.foreground:   #fbf1c7
+*.background:   #1d2021
+*.cursorColor:  #fbf1c7
+
+! black
+*.color0:       #282828
+*.color8:       #32302f
+
+! red
+*.color1:       #fb4934
+*.color9:       #ea6962
+
+! green
+*.color2:       #b8bb26
+*.color10:      #a9b665
+
+! yellow
+*.color3:       #fabd2f
+*.color11:      #ffc745
+
+! blue
+*.color4:       #83a598
+*.color12:      #7daea3
+
+! magenta
+*.color5:       #d3869b
+*.color13:      #d3869b
+
+! cyan
+*.color6:       #8ec07c
+*.color14:      #89b482
+
+! white
+*.color7:       #fbf1c7
+*.color15:      #f9f5d7
