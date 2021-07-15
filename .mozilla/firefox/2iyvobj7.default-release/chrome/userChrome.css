@@ -44,6 +44,7 @@
 	padding-left: 16px !important;
 }
 
+/* Hide top UI
 #page-action-buttons {
     display: none !important;
 }
@@ -51,6 +52,7 @@
 #PanelUI-button {
     display: none !important;
 }
+*/
 
 .tab-background[selected="true"] {
     background: var(--mff-tab-selected-bg) !important;
@@ -103,12 +105,14 @@ toolbar {
   border: none !important;
 }
  
+/* hide toolbar
 #navigator-toolbox:not(:focus-within):not(:hover) {
     margin-top: -38px;
 }
 #navigator-toolbox:hover:(:focus-within) {
 	margin-top: -38px;
-  }
+}
+*/
 
 #navigator-toolbox {
     transition: 0.2s margin-top ease-out;
