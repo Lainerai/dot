@@ -16,7 +16,7 @@ super + {_,shift + }p
     sh $HOME/.local/bin/dshbrd {open,close}
 # NNN file manager
 super + e
-    xterm -e nnn
+    nautilus
 # Nmtui
 super + n
     bspc rule -a \* -o state=floating && xterm -e nmtui
