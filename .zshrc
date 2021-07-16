@@ -1,5 +1,6 @@
 #autoload -U colors && colors
 #PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+#uptime --pretty
 
 export PATH=$PATH:$HOME/.local/bin:$HOME/bin
 export NNN_PLUG='f:finder;o:fzopen;p:preview-tui;d:diffs;t:mtpmount;v:imgview;g:organize;r:launcher'
