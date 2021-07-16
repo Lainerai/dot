@@ -4,8 +4,9 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 
 ##### AUTOSTART ####
 #dunst --config $HOME/.config/dunst/dunstrc &
+#nitrogen --restore &
+feh --bg-scale $HOME/Pictures/Wallpaper/wallpaper.jpg &
 picom --config $HOME/.config/picom/picom.conf &
-nitrogen --restore &
 tint2 &
 wmname LG3D
 sh $HOME/.config/polybar/launch.sh
