@@ -1,5 +1,5 @@
-autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+#autoload -U colors && colors
+#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 export PATH=$PATH:$HOME/.local/bin:$HOME/bin
 export NNN_PLUG='f:finder;o:fzopen;p:preview-tui;d:diffs;t:mtpmount;v:imgview;g:organize;r:launcher'
@@ -30,7 +30,7 @@ export PATH=~/.npm-packages/bin:$PATH
 # GENERAL #
 ########### 
 HISTFILE=~/.histfile
-HISTSIZE=1000
+HISTSIZE=10000
 SAVEHIST=1000
 bindkey -v
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#FF00FF"
