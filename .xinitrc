@@ -79,4 +79,5 @@ systemctl --user import-environment DISPLAY
 
 xset r rate 280 70 
 xsetroot -cursor_name left_ptr
+ibus-daemon -drxR &
 exec bspwm
