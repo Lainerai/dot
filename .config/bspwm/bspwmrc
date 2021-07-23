@@ -56,3 +56,4 @@ bspc rule -a eog 	            state=floating
 bspc rule -a Steam 	            state=floating
 bspc rule -a Guake 	            state=floating
 bspc rule -a Cawbird            state=floating
+bspc rule -a Cairo-dock         state=floating
