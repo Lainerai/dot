@@ -2,6 +2,9 @@
 #PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 #uptime --pretty
 
+ NEWLINE=$'\n'
+ PROMPT="%B%{$fg[yellow]%}%n|%m %~${NEWLINE}$fg[green]% $ $reset_color% "
+
 export PATH=$PATH:$HOME/.local/bin:$HOME/bin
 export NNN_PLUG='f:finder;o:fzopen;p:preview-tui;d:diffs;t:mtpmount;v:imgview;g:organize;r:launcher'
 export NNN_FIFO=/tmp/nnn.fifo
@@ -24,7 +27,6 @@ export PATH="$PATH:$NPM_PACKAGES/bin"
 NPM_PACKAGES="${HOME}/.npm-packages"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 export PATH=~/.npm-packages/bin:$PATH
-
 
 
 ###########
@@ -124,4 +126,3 @@ alias gp="git push"
 # End of lines
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(starship init zsh)"
